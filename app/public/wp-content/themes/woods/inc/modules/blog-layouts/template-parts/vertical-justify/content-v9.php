@@ -1,0 +1,61 @@
+<?php
+/**
+ * Template part for displaying style-v9 posts
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ * @package woods
+ */
+
+?>
+
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'posts-list__item justify-item' ); ?>>
+	<div class="justify-item-inner">
+		<?php if ( has_post_thumbnail() ) : ?>
+			<div class="justify-item__thumbnail" <?php woods_post_overlay_thumbnail( woods_justify_thumbnail_size(1) );?>></div>
+		<?php endif; ?>
+		<div class="justify-item-wrap">
+			<header class="entry-header">
+				<div class="entry-meta">
+					<?php
+					woods_posted_by();
+					woods_posted_in( array(
+						'prefix' => __( 'In', 'woods' ),
+						'delimiter' => ', '
+					) );
+					woods_posted_on( array(
+						'prefix' => '',
+					) );
+					?>
+				</div><!-- .entry-meta -->
+				<h4 class="entry-title"><?php
+					woods_sticky_label();
+					the_title( '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a>' );
+				?></h4>
+			</header><!-- .entry-header -->
+			<div class="justify-item-wrap__animated">
+				<?php woods_post_excerpt(); ?>
+				<footer class="entry-footer">
+					<div class="entry-meta">
+						<?php
+
+						$post_more_btn_enabled = strlen( woods_theme()->customizer->get_value( 'blog_read_more_text' ) ) > 0 ? true : false;
+						$post_comments_enabled = woods_theme()->customizer->get_value( 'blog_post_comments' );
+
+						if( $post_more_btn_enabled || $post_comments_enabled ) {
+							?><div class="space-between-content"><?php
+							woods_post_link();
+							woods_post_comments( array(
+								'postfix' => __( 'comments', 'woods' ),
+							) );
+							woods_post_tags();
+							?></div><?php
+						}
+						?>
+					</div>
+				</footer><!-- .entry-footer -->
+			</div><!-- .justify-item-wrap__animated-->
+		</div><!-- .justify-item-wrap-->
+	</div><!-- .justify-item-inner-->
+	<?php woods_edit_link(); ?>
+</article><!-- #post-<?php the_ID(); ?> -->

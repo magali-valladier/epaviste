@@ -1,0 +1,2 @@
+2021/11/04 12:26:22 [alert] 6468#7208: OpenEvent("ngx_master_17148") failed (2: FormatMessage() error:(15100))
+2021/11/20 11:44:37 [alert] 13000#7636: OpenEvent("ngx_master_10100") failed (2: FormatMessage() error:(15100))
